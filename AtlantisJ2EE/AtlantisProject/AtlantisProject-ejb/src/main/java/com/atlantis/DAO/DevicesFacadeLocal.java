@@ -24,8 +24,10 @@ public interface DevicesFacadeLocal {
 
     Devices find(Object id);
     
-    List<Devices> findbyaddress(String macaddr);
-            
+    Devices findbyaddress(String macaddr);
+    
+    List<Devices> findAllbyaddress(String macaddr);
+             
     List<Devices> findAll();
 
     List<Devices> findRange(int[] range);

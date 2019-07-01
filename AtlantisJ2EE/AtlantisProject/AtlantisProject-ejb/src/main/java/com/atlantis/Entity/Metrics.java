@@ -46,7 +46,7 @@ public class Metrics implements Serializable {
     @Size(max = 45)
     @Column(name = "metric_value")
     private String metricValue;
-    @Column(name = "created_at")
+    @Column(name = "created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @JoinColumn(name = "deviceID", referencedColumnName = "iddevices")

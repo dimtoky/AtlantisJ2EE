@@ -8,4 +8,9 @@
     <welcome-file-list>
         <welcome-file>test.xhtml</welcome-file>
     </welcome-file-list>
+    <ejb-local-ref>
+        <ejb-ref-name>UserFacade</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>com.atlantis.DAO.UserFacadeLocal</local>
+    </ejb-local-ref>
 </web-app>

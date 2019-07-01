@@ -12,52 +12,70 @@ package com.atlantis.MsgModels;
 public class DeviceMsg {
 
     private int id;
-    
-    private String deviceName;
+
+    private String name;
 
     private String deviceType;
-    
-    private String deviceAddress;
-    
-    private String createdAt;
+
+    private String macAddress;
+
+    private String metricDate;
+
+    private String metricValue;
+
+    /**
+     * Get the value of metricValue
+     *
+     * @return the value of metricValue
+     */
+    public String getMetricValue() {
+        return metricValue;
+    }
+
+    /**
+     * Set the value of metricValue
+     *
+     * @param metricValue new value of metricValue
+     */
+    public void setMetricValue(String metricValue) {
+        this.metricValue = metricValue;
+    }
 
     /**
      * Get the value of createdAt
      *
      * @return the value of createdAt
      */
-    public String getCreatedAt() {
-        return createdAt;
+    public String getmetricDate() {
+        return metricDate;
     }
 
     /**
      * Set the value of createdAt
      *
-     * @param createdAt new value of createdAt
+     * @param metricDate new value of createdAt
      */
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setmetricDate(String metricDate) {
+        this.metricDate = metricDate;
     }
-
 
     /**
      * Get the value of deviceAddress
      *
      * @return the value of deviceAddress
      */
-    public String getDeviceAddress() {
-        return deviceAddress;
+    public String getmacAddress() {
+        return macAddress;
     }
 
     /**
      * Set the value of deviceAddress
      *
-     * @param deviceAddress new value of deviceAddress
+     * @param macAddress new value of deviceAddress
      */
-    public void setDeviceAddress(String deviceAddress) {
-        this.deviceAddress = deviceAddress;
+    public void setmacAddress(String macAddress) {
+        this.macAddress = macAddress;
     }
-
 
     /**
      * Get the value of deviceType
@@ -100,17 +118,17 @@ public class DeviceMsg {
      *
      * @return the value of deviceName
      */
-    public String getDeviceName() {
-        return deviceName;
+    public String getname() {
+        return name;
     }
 
     /**
      * Set the value of deviceName
      *
-     * @param deviceName new value of deviceName
+     * @param name new value of deviceName
      */
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
+    public void setname(String name) {
+        this.name = name;
     }
 
 }

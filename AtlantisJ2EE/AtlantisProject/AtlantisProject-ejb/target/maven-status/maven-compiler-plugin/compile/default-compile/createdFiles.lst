@@ -11,12 +11,14 @@ com/atlantis/DAO/AbstractFacade.class
 com/atlantis/MsgModels/DeviceMsg.class
 com/atlantis/queues/Commandsqueue.class
 com/atlantis/Entity/User.class
+com/atlantis/MDB/MobileMetricsSyncBean.class
 com/atlantis/DAO/MetricsFacade.class
 com/atlantis/queues/RepInfoqueue.class
 com/atlantis/DAO/MetricsFacadeLocal.class
 com/atlantis/DAO/DevicesFacadeLocal.class
 com/atlantis/Entity/Devices_.class
 com/atlantis/Entity/Admin.class
+com/atlantis/MsgModels/CalculatedReqMsg.class
 com/atlantis/DAO/AdminFacade.class
 com/atlantis/DAO/UserdevicesFacadeLocal.class
 com/atlantis/DAO/UserFacadeLocal.class

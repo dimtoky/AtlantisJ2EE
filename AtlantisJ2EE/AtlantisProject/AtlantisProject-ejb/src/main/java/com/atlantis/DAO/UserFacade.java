@@ -6,9 +6,11 @@
 package com.atlantis.DAO;
 
 import com.atlantis.Entity.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +29,20 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
 
     public UserFacade() {
         super(User.class);
+    }
+    
+     @Override
+    public List<User> findAllbyUid(String Uid) {
+        TypedQuery<User> query = em.createNamedQuery("User.findByToken", User.class).setParameter("token",Uid);
+        List<User> user = query.getResultList();
+        return user;
+    }
+    
+     @Override
+    public User findbyUid(String Uid) {
+        TypedQuery<User> query = em.createNamedQuery("User.findByToken", User.class).setParameter("token",Uid);
+        User user = query.getSingleResult();
+        return user;
     }
     
 }

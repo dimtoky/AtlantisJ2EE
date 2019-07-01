@@ -32,9 +32,18 @@ public class DevicesFacade extends AbstractFacade<Devices> implements DevicesFac
     }
     
     @Override
-    public List<Devices> findbyaddress(String macaddr) {
+    public List<Devices> findAllbyaddress(String macaddr) {
         TypedQuery<Devices> query = em.createNamedQuery("Devices.findByMacAddress", Devices.class).setParameter("macAddress",macaddr);
         List<Devices> device = query.getResultList();
         return device;
     }
+    
+    @Override
+    public Devices findbyaddress(String macaddr) {
+        TypedQuery<Devices> query = em.createNamedQuery("Devices.findByMacAddress", Devices.class).setParameter("macAddress",macaddr);
+        Devices device = query.getSingleResult();
+        return device;
+    }
+    
+    
 }

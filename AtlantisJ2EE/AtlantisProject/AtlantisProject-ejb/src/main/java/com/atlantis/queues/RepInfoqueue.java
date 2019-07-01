@@ -48,7 +48,7 @@ public class RepInfoqueue implements RepInfoqueueLocal {
 
   ConnectionFactory conFactory = (ConnectionFactory) jndi
 
-    .lookup("jms/reqInfoConnectionFactory");
+    .lookup("jms/repInfoConnectionFactory");
 
   // Getting JMS connection from the server and starting it
 
@@ -61,7 +61,7 @@ public class RepInfoqueue implements RepInfoqueueLocal {
    // create here a non-transactional session object. If you want
 
    // to use transactions you should set the first parameter to 'true'
-   destination = (Destination) jndi.lookup("jms/reqInfo");
+   destination = (Destination) jndi.lookup("jms/repInfo");
 
  }
     
@@ -82,6 +82,7 @@ public class RepInfoqueue implements RepInfoqueueLocal {
             TextMessage message = session.createTextMessage(messagep);
             
             // Here we are sending the message!
+            
             
          
             producer.send(message);

@@ -8,6 +8,7 @@ package com.atlantis.Entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,7 +53,7 @@ public class Devices implements Serializable {
     @Size(max = 45)
     @Column(name = "mac_address")
     private String macAddress;
-    @Column(name = "created_at")
+    @Column(name = "created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @Size(max = 45)
@@ -111,6 +112,7 @@ public class Devices implements Serializable {
     }
 
     @XmlTransient
+    @JsonbTransient
     public List<Userdevices> getUserdevicesList() {
         return userdevicesList;
     }
@@ -120,6 +122,7 @@ public class Devices implements Serializable {
     }
 
     @XmlTransient
+    @JsonbTransient
     public List<Metrics> getMetricsList() {
         return metricsList;
     }

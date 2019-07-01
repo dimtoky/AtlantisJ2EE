@@ -1,2 +1,8 @@
-com/atlantis/endpoints/GenericResource.class
+com/atlantis/jsonObjectFormat/DeviceJson.class
+com/atlantis/endpoints/ApplicationConfig.class
 com/atlantis/UserManagement.class
+com/atlantis/jsonObjectFormat/MetricJson.class
+com/atlantis/endpoints/UserResource.class
+com/atlantis/FirebaseInit.class
+com/atlantis/endpoints/MetricsResource.class
+com/atlantis/jsonObjectFormat/UserJson.class

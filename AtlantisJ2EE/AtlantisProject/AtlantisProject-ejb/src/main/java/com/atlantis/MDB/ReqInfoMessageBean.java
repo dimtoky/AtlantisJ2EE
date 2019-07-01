@@ -8,9 +8,9 @@ package com.atlantis.MDB;
 import com.atlantis.DAO.DevicesFacadeLocal;
 import com.atlantis.Entity.Devices;
 import com.atlantis.MsgModels.DeviceMsg;
+import com.atlantis.queues.RepInfoqueueLocal;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,33 +36,46 @@ import javax.jms.TextMessage;
 public class ReqInfoMessageBean implements MessageListener {
 
     @EJB
+    private RepInfoqueueLocal repInfoqueue;
+
+    @EJB
     private DevicesFacadeLocal devicesFacade;
 
-    Date date= new Date();
-    
+
+
     public ReqInfoMessageBean() {
     }
 
     @Override
     public void onMessage(Message message) {
+
         try {
             TextMessage tmessage = (TextMessage) message;
+            System.out.println("Nouveau Device: " + tmessage);
             ObjectMapper objectMapper = new ObjectMapper();
             DeviceMsg devicemsg = objectMapper.readValue(tmessage.getText(), DeviceMsg.class);
+            devicemsg.setname(devicemsg.getDeviceType() + devicemsg.getmacAddress());
 
-            System.out.println(devicemsg.getDeviceAddress());
+            System.out.println(devicemsg.getmacAddress());
             System.out.println(devicemsg.getDeviceType());
-            List<Devices> dbdevice = devicesFacade.findbyaddress(devicemsg.getDeviceAddress());
-            if (dbdevice.isEmpty()) {
-                Devices devices = new Devices();
-                devices.setDeviceName(devicemsg.getDeviceType()+devicemsg.getDeviceAddress());
-                devices.setDeviceType(devicemsg.getDeviceType());
-                devices.setMacAddress(devicemsg.getDeviceAddress());
-                Timestamp ts = new Timestamp(date.getTime());
-                devices.setCreatedAt(ts);
-                devicesFacade.create(devices);
-            } else {
+            System.out.println(devicemsg.getname());
+            System.out.println(devicemsg.getMetricValue());
+            System.out.println(devicemsg.getmetricDate());
 
+            List<Devices> dbdevice = devicesFacade.findAllbyaddress(devicemsg.getmacAddress());
+            if (dbdevice.isEmpty()) {
+
+                Devices devices = new Devices();
+                devices.setDeviceName(devicemsg.getname());
+                devices.setDeviceType(devicemsg.getDeviceType());
+                devices.setMacAddress(devicemsg.getmacAddress());
+                devices.setCreatedAt(new Date());
+                devicesFacade.create(devices);
+                repInfoqueue.sendMessage(objectMapper.writeValueAsString(devicemsg));
+            } else {
+                Devices dbdevicer = devicesFacade.findbyaddress(devicemsg.getmacAddress());
+                devicemsg.setname(dbdevicer.getDeviceName());
+                repInfoqueue.sendMessage(objectMapper.writeValueAsString(devicemsg));
             }
 
         } catch (JMSException | IOException ex) {

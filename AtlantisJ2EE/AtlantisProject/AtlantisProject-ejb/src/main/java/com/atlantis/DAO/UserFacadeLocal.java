@@ -24,10 +24,14 @@ public interface UserFacadeLocal {
 
     User find(Object id);
 
+    User findbyUid(String Uid);
+
     List<User> findAll();
+
+    List<User> findAllbyUid(String Uid);
 
     List<User> findRange(int[] range);
 
     int count();
-    
+
 }
